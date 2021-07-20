@@ -1,14 +1,15 @@
 @page
-@model RazorPagingAdoNet.Pages.UsersModel
+@using RazorPagingAdoNet.Models.ViewModels
+@model RazorPagingAdoNet.Models.ViewModels.CourseListViewModel
 
 <h1>Utenti registrati:</h1>
 <hr>
 <ul>
-    @foreach (var item in Model.Utente)
+    @foreach (UserViewModel item in Model.Utenti.Results)
     {
         //Qui mostro i campi del database
-        <li>Cognome: @item.cognome</li>
-        <li>Nome: @item.nome</li>
-        <li>Email: @item.email</li>
+        <li>Cognome: @item.Cognome</li>
+        <li>Nome: @item.Nome</li>
+        <li>Email: @item.Email</li>
     }
 </ul>
