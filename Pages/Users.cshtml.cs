@@ -9,14 +9,13 @@ namespace RazorPagingAdoNet.Pages
 {
     public class UsersModel : PageModel
     {
+        public ListViewModel<UserViewModel> Utente = new();
+
         public async Task<IActionResult> OnGetAsync([FromServices] IUserService userService)
         {
-            ListViewModel<UserViewModel> User = new();
-
             try
             {
-                User = await userService.GetUsersAsync();
-
+                Utente = await userService.GetUsersAsync();
                 return Page();
             }
             catch
