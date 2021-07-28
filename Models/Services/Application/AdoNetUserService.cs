@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using RazorPagingAdoNet.Models.InputModels;
 using RazorPagingAdoNet.Models.Services.Infrastructure;
 using RazorPagingAdoNet.Models.ViewModels;
 
@@ -36,6 +37,20 @@ namespace RazorPagingAdoNet.Models.Services.Application
             };
 
             return result;
+        }
+
+        public async Task<bool> CreateUserAsync(UserInputModel input)
+        {
+            int affectedRows = await db.CommandAsync($@"INSERT INTO Utenti (cognome, nome, email) VALUES ({input.Cognome}, {input.Nome}, {input.Email})");
+            if (affectedRows == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
     }
 }

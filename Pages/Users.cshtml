@@ -1,6 +1,14 @@
 @page
 @model RazorPagingAdoNet.Pages.UsersModel
 
+<h1>Nuovo utente:</h1>
+<form method="POST">
+    <p>Cognome <input type="text" asp-for="Cognome" placeholder="Cognome"></p>
+    <p>Nome <input type="text" asp-for="Nome" placeholder="Nome"></p>
+    <p>Email <input type="text" asp-for="Email" placeholder="Email"></p>
+    <button type="submit">Registra utente</button>
+</form>
+
 <h1>Utenti registrati:</h1>
 <hr>
 <ul>

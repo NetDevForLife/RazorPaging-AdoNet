@@ -94,6 +94,7 @@ namespace RazorPagingAdoNet.Models.Services.Infrastructure
                 sqliteParameters.Add(parameter);
                 queryArguments[i] = "@" + i;
             }
+            
             string query = formattableQuery.ToString();
 
             SqliteCommand cmd = new(query, conn);
