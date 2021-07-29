@@ -3,6 +3,7 @@
 
 <h1>Nuovo utente:</h1>
 <form method="POST">
+    <p><div asp-validation-summary="All"></div></p>
     <p>Cognome <input type="text" asp-for="Cognome" placeholder="Cognome"></p>
     <p>Nome <input type="text" asp-for="Nome" placeholder="Nome"></p>
     <p>Email <input type="text" asp-for="Email" placeholder="Email"></p>
@@ -20,3 +21,7 @@
         <hr>
     }
 </ul>
+@section Scripts
+{
+    <partial name="_Validation"></partial>
+}

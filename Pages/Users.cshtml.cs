@@ -13,14 +13,18 @@ namespace RazorPagingAdoNet.Pages
     {
         public ListViewModel<UserViewModel> Utente = new();
 
+        [Required(ErrorMessage = "Il cognome è obbligatorio")]
         [Display(Name = "Cognome")]
         [BindProperty]
         public string Cognome { get; set; }
 
+        [Required(ErrorMessage = "Il nome è obbligatorio")]
         [Display(Name = "Nome")]
         [BindProperty]
         public string Nome { get; set; }
 
+        [Required(ErrorMessage = "L'indirizzo email è obbligatorio")]
+        [EmailAddress(ErrorMessage = "L'indirizzo email deve avere un formato valido")]
         [Display(Name = "Email")]
         [BindProperty]
         public string Email { get; set; }
@@ -46,15 +50,22 @@ namespace RazorPagingAdoNet.Pages
             input.Nome = Nome;
             input.Email = Email;
 
-            bool result = await userService.CreateUserAsync(input);
-            
-            if (result)
+            if (ModelState.IsValid)
             {
-                return await OnGetAsync(userService);
+                bool result = await userService.CreateUserAsync(input);
+            
+                if (result)
+                {
+                    return await OnGetAsync(userService);
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
             else
             {
-                throw new Exception();
+                return await OnGetAsync(userService);
             }
         }
     }
